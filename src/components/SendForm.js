@@ -1,34 +1,72 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import { Button, TextField } from "@material-ui/core";
+import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
 import { ParamsList } from "./ParamsList";
 import React, { useState } from "react";
 import { API_URL } from "../const/api";
 import BeatLoader from "react-spinners/BeatLoader";
 
 export const SendForm = () => {
-  const [tplParams, setTplParams] = useState([]);
-  const [saving, setSaving] = useState(false);
-  const [processedResult, setProcessedResult] = useState('');
+  const [emailTplParams, setEmailTplParams] = useState([]);
+  const [sending, setSending] = useState(false);
 
   return <Formik
     initialValues={{
+      to: '',
+      subject: '',
+      text: '',
+      isHTML: true,
       template: '',
-      templateParams: {},
+      templateParams: {
+      },
     }}
     onSubmit={async values => {
-      setSaving(true);
-      const res = await axios.post(`${API_URL}/template/process`,{
+      setSending(true);
+      await axios.post(`${API_URL}/emails/send`,{
+        "isHtml": values.isHTML,
+        "subject": values.subject,
         "template": values.template,
-        "templateParams": Object.fromEntries(tplParams.map(({key, value}) => [key.toLowerCase(), value])),
+        "templateParams": Object.fromEntries(emailTplParams.map(({key, value}) => [key.toLowerCase(), value])),
+        "text": values.text,
+        "to": values.to
       });
-      setSaving(false);
-      setProcessedResult(res?.data?.data);
-    }}
-  >
+      setSending(false);
+    }}>
     {(props) => (
-      <Form className='process-form'>
+      <Form className='send-form'>
         <div className='field-container'>
+          <TextField
+            fullWidth={true}
+            className='field'
+            id='to'
+            name='to'
+            placeholder='Email*'
+            value={props.values.to}
+            onChange={event => props.setFieldValue('to', event.target.value)}
+          />
+        </div>
+        <div className='field-container'>
+          <TextField
+            fullWidth={true}
+            className='field'
+            id='subject'
+            name='subject'
+            placeholder='Subject*'
+            value={props.values.subject}
+            onChange={event => props.setFieldValue('subject', event.target.value)}
+          />
+        </div>
+        <div className='field-container'>
+          <TextField
+            fullWidth={true}
+            className='field'
+            id='text'
+            name='text'
+            placeholder='Text'
+            value={props.values.text}
+            onChange={event => props.setFieldValue('text', event.target.value)}
+          />
+          <div className='separator'>OR</div>
           <TextField
             fullWidth={true}
             className='field'
@@ -40,34 +78,44 @@ export const SendForm = () => {
           />
         </div>
         <ParamsList
-          params={tplParams}
-          onAdd={() => setTplParams([...tplParams, {key: '', value: ''}])}
-          onRemove={(index) => setTplParams(tplParams.filter((val, idx) => index !== idx))}
+          params={emailTplParams}
+          onAdd={() => setEmailTplParams([...emailTplParams, {key: '', value: ''}])}
+          onRemove={(index) => setEmailTplParams(emailTplParams.filter((val, idx) => index !== idx))}
           onValueChange={(index, value) => {
-            tplParams[index].value = value;
-            setTplParams([...tplParams]);
+            emailTplParams[index].value = value;
+            setEmailTplParams([...emailTplParams]);
           }}
           onKeyChange={(index, value) => {
-            tplParams[index].key = value;
-            setTplParams([...tplParams]);
+            emailTplParams[index].key = value;
+            setEmailTplParams([...emailTplParams]);
           }}
+        />
+        <FormControlLabel
+          className='field-container'
+          labelPlacement='end'
+          label='HTML'
+          control={<Switch
+            checked={props.values.isHTML}
+            onChange={(event, val) => props.setFieldValue('isHTML',  val)}
+            color="primary"
+            name="isHtml"
+          />}
         />
         <Button
           className='button'
           type='submit'
           variant='contained'
           color='primary'
-          disabled={saving}
+          disabled={sending}
         >
-          {!saving && 'Send'}
+          {!sending && 'Send'}
           <BeatLoader
             css='position:absolute'
             size={10}
             color={"#ffffff"}
-            loading={saving}
+            loading={sending}
           />
         </Button>
-        {processedResult && <div className='processed-template'>Result: {processedResult}</div>}
       </Form>
     )}
   </Formik>
