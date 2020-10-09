@@ -4,9 +4,11 @@ import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
 import { ParamsList } from "./ParamsList";
 import React, { useState } from "react";
 import { API_URL } from "../const/api";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export const TemplateForm = () => {
   const [emailTplParams, setEmailTplParams] = useState([]);
+  const [sending, setSending] = useState(false);
 
   return <Formik
     initialValues={{
@@ -19,6 +21,7 @@ export const TemplateForm = () => {
       },
     }}
     onSubmit={async values => {
+      setSending(true);
       await axios.post(`${API_URL}/emails/send`,{
         "isHtml": values.isHTML,
         "subject": values.subject,
@@ -27,6 +30,7 @@ export const TemplateForm = () => {
         "text": values.text,
         "to": values.to
       });
+      setSending(false);
     }}>
     {(props) => (
       <Form className='send-form'>
@@ -97,8 +101,20 @@ export const TemplateForm = () => {
             name="isHtml"
           />}
         />
-        <Button className='button' type='submit' variant='contained' color='primary'>
-          Send
+        <Button
+          className='button'
+          type='submit'
+          variant='contained'
+          color='primary'
+          disabled={sending}
+        >
+          {!sending && 'Process'}
+          <BeatLoader
+            css='position:absolute'
+            size={10}
+            color={"#ffffff"}
+            loading={sending}
+          />
         </Button>
       </Form>
     )}

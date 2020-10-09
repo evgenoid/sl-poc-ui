@@ -4,7 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import { ParamsList } from "./ParamsList";
 import React, { useState } from "react";
 import { API_URL } from "../const/api";
-import ClockLoader from "react-spinners/ClockLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export const SendForm = () => {
   const [tplParams, setTplParams] = useState([]);
@@ -22,7 +22,7 @@ export const SendForm = () => {
         "template": values.template,
         "templateParams": Object.fromEntries(tplParams.map(({key, value}) => [key.toLowerCase(), value])),
       });
-      // setSaving(false);
+      setSaving(false);
       setProcessedResult(res?.data?.data);
     }}
   >
@@ -52,11 +52,18 @@ export const SendForm = () => {
             setTplParams([...tplParams]);
           }}
         />
-        <Button className='button' type='submit' variant='contained' color='primary'>
-          Process
-          <ClockLoader
-            size={20}
-            color={"#123abc"}
+        <Button
+          className='button'
+          type='submit'
+          variant='contained'
+          color='primary'
+          disabled={saving}
+        >
+          {!saving && 'Process'}
+          <BeatLoader
+            css='position:absolute'
+            size={10}
+            color={"#ffffff"}
             loading={saving}
           />
         </Button>
