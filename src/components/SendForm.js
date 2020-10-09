@@ -59,7 +59,7 @@ export const SendForm = () => {
           color='primary'
           disabled={saving}
         >
-          {!saving && 'Process'}
+          {!saving && 'Send'}
           <BeatLoader
             css='position:absolute'
             size={10}

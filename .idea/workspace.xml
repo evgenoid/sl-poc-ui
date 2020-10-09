@@ -10,12 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31a8501d-e6af-4262-bd4f-57d713e6f325" name="Default Changelist" comment="Add forms">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SendForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SendForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TemplateForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TemplateForm.js" afterDir="false" />
-    </list>
+    <list default="true" id="31a8501d-e6af-4262-bd4f-57d713e6f325" name="Default Changelist" comment="Add loaders" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +86,7 @@
       <updated>1602136730767</updated>
       <workItem from="1602136732975" duration="520000" />
       <workItem from="1602137292921" duration="16563000" />
-      <workItem from="1602222342664" duration="3497000" />
+      <workItem from="1602222342664" duration="3743000" />
     </task>
     <task id="LOCAL-00001" summary="Init App">
       <created>1602138671484</created>
@@ -114,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602228294574</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add loaders">
+      <created>1602228981438</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602228981438</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +138,8 @@
     <MESSAGE value="Init App" />
     <MESSAGE value="Update App.js" />
     <MESSAGE value="Add forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add forms" />
+    <MESSAGE value="Add loaders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add loaders" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1638" height="295" key="GridCell.Tab.0.bottom" timestamp="1602224486859">
@@ -159,10 +162,11 @@
     </state>
     <state width="1638" height="295" key="GridCell.Tab.0.right/-94.-1057.1920.1057/0.0.1680.1050@0.0.1680.1050" timestamp="1602137262221" />
     <state width="1638" height="295" key="GridCell.Tab.0.right/-94.-1080.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1602224486856" />
-    <state x="440" y="252" key="Vcs.Push.Dialog.v2" timestamp="1602228297502">
+    <state x="440" y="252" key="Vcs.Push.Dialog.v2" timestamp="1602228986545">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="440" y="252" key="Vcs.Push.Dialog.v2/-94.-1080.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1602228297502" />
+    <state x="440" y="252" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1602228986545" />
     <state x="663" y="266" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602137221896">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
